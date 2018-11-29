@@ -1,0 +1,27 @@
+{
+  "name": "fledge",
+  "version": "1.0.0",
+  "description": "A tool for finding beginner-friendly repos.",
+  "main": "newhubFetch.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "node-fetch": "2.3.0",
+    "express": "4.16.4",
+    "body-parser": "1.18.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ljsikuade/fledge.git"
+  },
+  "keywords": [
+    "fledge"
+  ],
+  "author": "Luke Sikuade",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ljsikuade/fledge/issues"
+  },
+  "homepage": "https://github.com/ljsikuade/fledge#readme"
+}
