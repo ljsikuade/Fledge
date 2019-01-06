@@ -26,7 +26,6 @@ _Note: You the .fledge.md file must appear as is without prefixes. In the future
 
 I experimented with a number of technologies that are new to me while building this.
 
-- React-Router
 - Github OAuth & Github GraphQL API
 - Nodemailer
 - Superagent
