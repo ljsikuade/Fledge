@@ -59,7 +59,9 @@ CREATE TABLE xss_prevention(stringID INT AUTO_INCREMENT PRIMARY KEY, strings VAR
 ```
 
 4. Setting up OAuth:
+
    i) You will need to secure a client id and a client secret from Github's developer settings.
+
    ii) You will need to create a .env file with the following parameters:
 
 ```
