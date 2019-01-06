@@ -186,5 +186,7 @@ function parseData(dataWhole) {
   });
   return dataWhole;
 }
-
-exp.listen(8080);
+const port = process.env.PORT || 8080;
+exp.listen(port, () => {
+  console.log(`listening on ${port}`);
+});
