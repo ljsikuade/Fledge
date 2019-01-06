@@ -23,8 +23,8 @@ exp.post("/email", (req, res) => {
     port: 465,
     secure: true,
     auth: {
-      user: process.env.email,
-      pass: process.env.pass
+      user: process.env.EMAIL,
+      pass: process.env.PASS
     },
     tls: {
       rejectUnauthorized: false
@@ -49,7 +49,8 @@ exp.post("/email", (req, res) => {
 var connection = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
 });
 
 connection.connect(err => {
@@ -73,7 +74,9 @@ exp.get("/authentication", (req, res) => {
   }
 
   connection.query(
-    `SELECT strings FROM fledge_data.xss_prevention WHERE strings = ?`,
+    `SELECT strings FROM ${
+      process.env.DB_NAME
+    }.xss_prevention WHERE strings = ?`,
     [state],
     (error, results, fields) => {
       if (error || results[0].error) {
@@ -103,7 +106,7 @@ exp.get("/authentication", (req, res) => {
 
 exp.post("/login/state", (req, res) => {
   connection.query(
-    `INSERT INTO fledge_data.xss_prevention (strings) VALUE (?);`,
+    `INSERT INTO ${process.env.DB_NAME}.xss_prevention (strings) VALUE (?);`,
     [req.body.state],
     () => {
       res.json({ success: true, stringState: req.body.state });
@@ -162,12 +165,12 @@ exp.get("/repos", (req, res) => {
     .then(body => {
       let refinedData = parseData(body);
       connection.query(
-        `SELECT * FROM fledge_data.repos`,
+        `SELECT * FROM ${process.env.DB_NAME}.repos`,
         (error, results, fields) => {
           refinedData.data.search.edges.map(element => {
             if (!results.find(el => el.repo_id === element.node.id)) {
               connection.query(
-                `INSERT INTO fledge_data.repos (repo_id) VALUE(?)`,
+                `INSERT INTO ${process.env.DB_NAME}.repos (repo_id) VALUE(?)`,
                 [element.node.id]
               );
             }

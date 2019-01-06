@@ -157,32 +157,37 @@ class App extends React.Component {
   }
 
   submitMessage(event) {
-    console.log("submitted");
     event.preventDefault();
-    fetch("/email", {
-      method: "POST",
-      body: JSON.stringify({
-        subject: "Fledge-Contact",
-        from: this.state.email,
-        to: "lukesikuade@gmail.com",
-        text:
-          this.state.message +
-          " From " +
-          this.state.name +
-          "Email " +
-          this.state.email
-      }),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res => res.json())
-      .then(body => {
-        if (body === "Success") {
-          alert("Email succesfully sent!");
-          this.setState({ message: "", name: "", email: "" });
+    if (!this.state.message === "" || !this.state.email === "") {
+      fetch("/email", {
+        method: "POST",
+        body: JSON.stringify({
+          subject: "Fledge-Contact",
+          from: this.state.email,
+          to: "lukesikuade@gmail.com",
+          text:
+            this.state.message +
+            " From " +
+            this.state.name +
+            "Email " +
+            this.state.email
+        }),
+        headers: {
+          "Content-Type": "application/json"
         }
-      });
+      })
+        .then(res => res.json())
+        .then(body => {
+          if (body === "Success") {
+            alert("Email succesfully sent!");
+            this.setState({ message: "", name: "", email: "" });
+          }
+        });
+    } else {
+      alert(
+        "Please ensure that you have left both a message and your email, so that I am able to respond."
+      );
+    }
   }
   render() {
     return (
@@ -216,10 +221,7 @@ class App extends React.Component {
                   <h2 className="repo-name">{edge.node.name}</h2>
                   <p className="repo-desc">{edge.node.description}</p>
                   <p className="repo-date">
-                    Last Updated:{" "}
-                    <Moment parse="DD-MM-YYYY HH:mm">
-                      {edge.node.updatedAt}
-                    </Moment>
+                    Last Updated: <Moment fromNow>{edge.node.updatedAt}</Moment>
                   </p>
 
                   <p className="bookmarked">
