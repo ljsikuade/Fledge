@@ -17,7 +17,7 @@ them.
 
 To list your repository effectively, you will need to follow two simple steps:
 
-1. Create a .fledge.md file on the master branch ( This is the default. Other branches must configured in-app).
+1. Create a .fledge.md file on the master branch (This is the default. Other branches must be configured in-app).
 2. Add a new topic to your repository: "fledge".
 
 _Note: You the .fledge.md file must appear as is without prefixes. In the future this will be configurable in-app._
@@ -61,12 +61,14 @@ CREATE TABLE xss_prevention(stringID INT AUTO_INCREMENT PRIMARY KEY, strings VAR
 4. Setting up OAuth:
    i) You will need to secure a client id and a client secret from Github's developer settings.
    ii) You will need to create a .env file with the following parameters:
-   CLIENT_ID= <<YOUR ID HERE>>  
-   CLIENT_SECRET=<<YOUR SECRET HERE>>
 
+```
+CLIENT_ID= <<YOUR ID HERE>>
+CLIENT_SECRET=<<YOUR SECRET HERE>>
 DB_HOST=<<YOUR DATABASE HOST HERE>>
 DB_USERNAME=<<YOUR DATABASE USERNAME>>
 DB_PASSWORD=<<YOUR DATABASE PASSWORD>>
+```
 
 GRAPHQL_AUTHENTICATION = <<YOUR GITHUB PERSONAL ACCESS TOKEN HERE>>
 
