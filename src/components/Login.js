@@ -4,8 +4,7 @@ class Login extends React.Component {
     super();
     this.state = {
       disableLink: true,
-      stringState: "",
-      clientId: ""
+      stringState: ""
     };
   }
 
@@ -37,9 +36,9 @@ class Login extends React.Component {
         {!this.props.loggedIn && (
           <a
             disabled={this.state.disableLink}
-            href={`https://github.com/login/oauth/authorize?client_id=${
-              this.state.clientId
-            }&state=${this.state.stringState}`}
+            href={`https://github.com/login/oauth/authorize?client_id=e939c3ba043e952c1677&state=${
+              this.state.stringState
+            }`}
           >
             Login with Github
           </a>

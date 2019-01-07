@@ -112,7 +112,6 @@ class App extends React.Component {
 
   sortByPopular() {
     let editableData = this.state.repos;
-    // console.log(this.state.repos);
     editableData.data.search.edges
       .sort((a, b) => {
         return a.node.stargazers.totalCount - b.node.stargazers.totalCount;
@@ -158,7 +157,7 @@ class App extends React.Component {
 
   submitMessage(event) {
     event.preventDefault();
-    if (!this.state.message === "" || !this.state.email === "") {
+    if (this.state.message !== "" || this.state.email !== "") {
       fetch("/email", {
         method: "POST",
         body: JSON.stringify({

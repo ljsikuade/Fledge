@@ -77,4 +77,4 @@ iii) Finally, in the file: src\components\Login.js, enter your client id into st
 
 ## Or See it Live
 
-~~link pending deployment
+https://fledge-app.herokuapp.com/

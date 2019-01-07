@@ -13,6 +13,10 @@ exp.use(bodyParser.urlencoded({ extended: true }));
 exp.use("/static", express.static("static"));
 exp.set("view engine", "hbs");
 
+process.on("uncaughtException", function(err) {
+  console.log(err);
+});
+
 exp.get("/", (req, res) => {
   res.render("index");
 });
