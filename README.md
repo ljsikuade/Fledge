@@ -73,8 +73,6 @@ DB_NAME=<<YOUR DATABASE NAME>>
 GRAPHQL_AUTHENTICATION = <<YOUR GITHUB PERSONAL ACCESS TOKEN HERE>>
 ```
 
-iii) Finally, in the file: src\components\Login.js, enter your client id into state.
-
 ## Or See it Live
 
 https://fledge-app.herokuapp.com/

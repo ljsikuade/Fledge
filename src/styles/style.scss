@@ -246,6 +246,7 @@ body {
 
 .help-label {
   font-weight: bolder;
+  cursor: pointer;
 }
 
 .modal-list {
@@ -323,8 +324,6 @@ body {
   .email {
     min-width: 0;
     border: none;
-  }
-  .contact {
   }
   .messagebox {
     margin-right: 10rem;
