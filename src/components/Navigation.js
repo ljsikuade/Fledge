@@ -1,6 +1,5 @@
 import React from "react";
 import Dropdown from "react-dropdown";
-import Login from "./Login";
 const options = [
   { value: "popularity", label: "Popularity" },
   { value: "recent", label: "Most Recent" },
