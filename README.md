@@ -1,7 +1,7 @@
 # Fledge
 
 ![fledge-desktop](https://i.imgur.com/XQTwLqp.png)
-![fledge-mobile](https://i.imgur.com/7hM87pk.png)
+![fledge-mobile](https://i.imgur.com/7hM87pk.png?2)
 
 ## About
 
