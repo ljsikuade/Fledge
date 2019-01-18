@@ -7,6 +7,7 @@ const fetch = require("isomorphic-fetch");
 const mysql = require("mysql");
 const querystring = require("querystring");
 const nodeMailer = require("nodemailer");
+const mailgunTransport = require("nodemailer-mailgun-transport");
 
 exp.use(bodyParser.json());
 exp.use(bodyParser.urlencoded({ extended: true }));
@@ -22,32 +23,29 @@ exp.get("/", (req, res) => {
 });
 
 exp.post("/email", (req, res) => {
-  let transporter = nodeMailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
+  const mailgunOptions = {
     auth: {
-      user: process.env.EMAIL,
-      pass: process.env.PASS
-    },
-    tls: {
-      rejectUnauthorized: false
+      api_key: process.env.MAILGUN_ACTIVE_API_KEY,
+      domain: process.env.MAILGUN_DOMAIN
     }
-  });
-  let mailOptions = {
-    from: req.body.from,
-    to: req.body.to,
-    subject: req.body.subject,
-    text: req.body.text,
-    html: ""
   };
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      return console.log(error);
+  const transport = mailgunTransport(mailgunOptions);
+  let transporter = nodeMailer.createTransport(transport);
+  transporter.sendMail(
+    {
+      from: req.body.from,
+      to: req.body.to, // An array if you have multiple recipients.
+      subject: "Fledge Feedback",
+      text: req.body.text
+    },
+    (err, info) => {
+      if (err) {
+        console.log(`Error: ${err}`);
+      } else {
+        console.log(`Response: ${info}`);
+      }
     }
-    console.log("Message %s sent: %s", info.messageId, info.response);
-    res.json("Success");
-  });
+  );
 });
 
 var connection = mysql.createConnection({

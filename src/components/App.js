@@ -5,15 +5,10 @@ import InstructionModal from "./InstructionModal";
 import Navigation from "./Navigation";
 import ScrollEvent from "react-onscroll";
 import Markdown from "react-markdown";
-
-import {
-  Link,
-  Element,
-  Events,
-  animateScroll as scroll,
-  scrollSpy,
-  scroller
-} from "react-scroll";
+import bird from "../../static/c7ffa4ff7cb6e96c8a43873a604b3a2e.png";
+import cloud from "../../static/images/cloud.png";
+import tree from "../../static/images/tree.png";
+import { animateScroll as scroll } from "react-scroll";
 
 const scrollOptions = {
   duration: 300
@@ -36,7 +31,8 @@ class App extends React.Component {
       message: "",
       name: "",
       email: "",
-      formSubmitted: false
+      formSubmitted: false,
+      loadLoginComponent: false
     };
     this.selected = this.selected.bind(this);
     this.sortOptions = this.sortOptions.bind(this);
@@ -50,6 +46,8 @@ class App extends React.Component {
     this.contact = this.contact.bind(this);
     this.handleMessageInput = this.handleMessageInput.bind(this);
     this.submitMessage = this.submitMessage.bind(this);
+
+    this.loadLogin = this.loadLogin.bind(this);
   }
 
   componentDidMount() {
@@ -61,6 +59,10 @@ class App extends React.Component {
           this.logUserIn(window.location.search.split("=")[1]);
         }
       });
+  }
+
+  loadLogin() {
+    this.setState({ loadLoginComponent: !this.state.loadLoginComponent });
   }
 
   logUserIn(token) {
@@ -193,16 +195,22 @@ class App extends React.Component {
       <main className="app">
         <ScrollEvent handleScrollCallback={this.handleScroll} />
         <section className="intro">
+          <img className="bird-logo" src={bird} />
+          <img className="tree" src={tree} />
           <p className="about">
             Help people new to github find beginner-friendly repositories.
           </p>
         </section>
-        <Navigation
-          text={this.state.user}
-          sortOptions={this.sortOptions}
-          createNewEntry={this.createNewEntry}
-          loggedIn={this.state.loggedIn}
-        />
+        <Navigation sortOptions={this.sortOptions} />
+
+        {!this.state.loadLoginComponent && (
+          <button className="login-button" onClick={this.loadLogin}>
+            {this.state.user}
+          </button>
+        )}
+        {this.state.loadLoginComponent && (
+          <Login loggedIn={this.state.loggedIn} />
+        )}
 
         {this.state.repos && (
           <div className="repo-list">
@@ -236,6 +244,7 @@ class App extends React.Component {
                         }
                         className="ext-link"
                         href={edge.node.url}
+                        target="_blank"
                       >
                         <i class="fas fa-external-link-alt" />
                       </a>
@@ -301,7 +310,7 @@ class App extends React.Component {
             ^
           </button>
         )}
-
+        <span />
         <section>
           <h2 className="contact-header">Contact Me</h2>
           <form className="contact" onSubmit={this.submitMessage}>

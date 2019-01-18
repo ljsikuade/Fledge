@@ -20,7 +20,7 @@ To list your repository effectively, you will need to follow two simple steps:
 1. Create a .fledge.md file on the master branch (This is the default. Other branches must be configured in-app).
 2. Add a new topic to your repository: "fledge".
 
-_Note: You the .fledge.md file must appear as is without prefixes. In the future this will be configurable in-app._
+_Note: The .fledge.md file must appear as is without prefixes. In the future this will be configurable in-app._
 
 ## Technologies Used
 

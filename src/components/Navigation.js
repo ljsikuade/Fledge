@@ -12,11 +12,6 @@ const defaultOption = { value: "sort", label: "Sort By" };
 class Navigation extends React.Component {
   constructor() {
     super();
-    this.state = { loadLoginComponent: false };
-    this.loadLogin = this.loadLogin.bind(this);
-  }
-  loadLogin() {
-    this.setState({ loadLoginComponent: !this.state.loadLoginComponent });
   }
   render() {
     return (
@@ -28,15 +23,6 @@ class Navigation extends React.Component {
           onChange={this.props.sortOptions}
           value={defaultOption}
         />
-
-        {!this.state.loadLoginComponent && (
-          <button className="login-button" onClick={this.loadLogin}>
-            {this.props.text}
-          </button>
-        )}
-        {this.state.loadLoginComponent && (
-          <Login loggedIn={this.props.loggedIn} />
-        )}
       </nav>
     );
   }
