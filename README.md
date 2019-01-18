@@ -1,5 +1,8 @@
 # Fledge
 
+![fledge-desktop](https://i.imgur.com/XQTwLqp.png)
+![fledge-mobile](https://i.imgur.com/7hM87pk.png)
+
 ## About
 
 Fledge is a tool for finding beginner-friendly repositories.
