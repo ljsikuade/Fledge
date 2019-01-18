@@ -74,7 +74,7 @@ exp.get("/authentication", (req, res) => {
       message: `Authentication failed due to invalid API callback. Code: ${code}`
     });
   }
-
+  console.log("query: ", query, "code: ", code, "state: ", state);
   connection.query(
     `SELECT strings FROM ${
       process.env.DB_NAME
