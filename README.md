@@ -1,3 +1,4 @@
+Email is currently on pause, while I transition the project to a verified domain. If you would like to get into contact with me about the project or about a placement, you can email me directly at: ljsikuade@hotmail.co.uk. 
 
 # Fledge
 
